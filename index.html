@@ -6,5 +6,104 @@
     </title>
    <body>
       sup joek
+      	<div id="container">
+		<button onclick="reset();">reset</button>
+		<button onclick="activeer();" id="k">on</button>
+		<span id="klok" style="font-size:100px">00.00.00</span>
+		<iframe style="display:none;" id="show"  width="560" height="315" src="https://www.youtube.com/embed/TcJ-wNmazHQ?ecver=1" frameborder="0" allowfullscreen>></iframe>
+		<button style="display:none;" onclick="hide();" id="hide">hide</button>
+		<!--<a href="http://cat-bounce.com/">cat bounce</a> -->
+		</div>
+	</body>
+	<script>
+	var lopen=false;
+	var minuten=0;
+	var secondes=0;
+	var uren=0;
+	function VoegSecondenToe(){
+		if(lopen){
+		secondes=secondes+1;
+		}
+		if(secondes==60){
+		minuten=minuten+1;
+		secondes=0;
+		}
+		if(minuten==60){
+		uren=uren+1;
+		minuten=0;
+		}
+		var beeld_secondes;
+		if(secondes<10){
+		beeld_secondes="0"+secondes;
+		} else {
+		beeld_secondes = secondes;
+		}
+
+		var beeld_minuten;
+		if(minuten<10){
+		beeld_minuten="0"+minuten;
+		} else {
+		beeld_minuten = minuten;
+		}
+
+		var beeld_uren;
+		if(uren<10){
+		beeld_uren="0"+uren;
+		} else {
+		beeld_uren = uren;
+		} 
+		
+		if(minuten==1&&secondes==0){
+		document.getElementById("show").style.display="block";
+		document.getElementById("hide").style.display="block";
+		beeld_secondes=beeld_minuten=beeld_uren="THIS IS THE FINAL COUNTUP... TUDEDUUUDUU, TUDEDUDEDUUU";
+		document.getElementById("klok").style.font_size="10px";
+		lopen=false;
+		
+		}
+		
+		
+		document.getElementById("klok").innerHTML=beeld_uren+":"+beeld_minuten+":"+beeld_secondes;
+		
+		
+	}
+				
+				
+				
+				
+				
+				
+				
+				VoegSecondenToe();
+				
+				setInterval(VoegSecondenToe,10);
+				
+		
+				
+		function activeer(){
+			lopen = !lopen;
+			
+			if(lopen){
+				document.getElementById("k").innerHTML="off";
+			}
+			else{
+			
+			document.getElementById("k").innerHTML="on";
+			}
+		}
+		
+		function reset(){
+			lopen=false;
+			secondes=0;
+			minuten=0;
+			uren=0;
+			
+			document.getElementById("klok").innerHTML="00:00:00";
+		}
+		function hide(){
+			document.getElementById("show").style.display="none";
+			document.getElementById("hide").style.display="none";
+			
+		}
    </body>
 </html>  
